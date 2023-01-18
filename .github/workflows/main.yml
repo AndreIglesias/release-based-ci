@@ -7,7 +7,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - name: Rune a one-line script
+      - uses: AButler/upload-release-assets@v2.0
+      - name: Add game.js to release
 
-        run: echo Hello, your release is published
+        with:
+	  files: 'game.js'
+	  repo-token: ${{ secrets.GITHUB_TOKEN }}
