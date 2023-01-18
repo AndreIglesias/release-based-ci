@@ -29,9 +29,10 @@ jobs:
           options: -v ${{ env.PWD }}:/io
           run: |
             echo "Hello docker friend"
-            yum install zip openssl-devel
-            curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+            yum -y install zip openssl-devel
+            #curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
             export LIBTORCH=$PWD/libtorch
             export LD_LIBRARY_PATH=$LIBTORCH/lib:$LD_LIBRARY_PATH
-            cd server
+            cd io/server
             pwd
+            ls
