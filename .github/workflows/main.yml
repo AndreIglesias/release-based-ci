@@ -16,6 +16,4 @@ jobs:
       - name: Upload binary to release
         uses: softprops/action-gh-release@v1
         with:
-          files: |
-	    Release.txt
-	    LICENSE
+          files: Release.txt
