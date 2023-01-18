@@ -12,7 +12,12 @@ jobs:
       - name: Set env
         run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
       - name: Test
-        run: echo $RELEASE_VERSION; pwd; ls; echo ${{ env.RELEASE_VERSION }}; echo "test" > test.txt
+        run: |
+          echo $RELEASE_VERSION pwd
+          ls
+          echo ${{ env.RELEASE_VERSION }}
+          echo "test" > test.txt
+	  echo "PWD=$(pwd)" >> $GITHUB_ENV
       - name: Upload to release
         uses: softprops/action-gh-release@v1
         with:
@@ -21,6 +26,6 @@ jobs:
         uses: addnab/docker-run-action@v3
         with:
           image: quay.io/pypa/manylinux2014_x86_64
-          options: -v $(pwd):/io
+          options: -v ${{ env.PWD }}:/io
           run: |
             echo "Hello docker friend"
