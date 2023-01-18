@@ -17,7 +17,10 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: game.js
-#      - name: Docker run action
-#        uses: addnab/docker-run-action@v3
-#        with:
-#          image:
+      - name: Docker run action
+        uses: addnab/docker-run-action@v3
+        with:
+          image: quay.io/pypa/manylinux2014_x86_64
+          options: -v $(pwd):/io
+          run: |
+            echo "Hello docker friend"
