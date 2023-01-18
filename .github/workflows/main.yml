@@ -8,8 +8,6 @@ jobs:
 
     steps:
       - uses: AButler/upload-release-assets@v2.0
-      - name: Add game.js to release
-
         with:
           files: 'game.js'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
