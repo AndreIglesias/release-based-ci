@@ -9,19 +9,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Set env
-        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
-      - name: Test
+      - name: Setup environment
         run: |
-          echo $RELEASE_VERSION pwd
-          ls
-          echo ${{ env.RELEASE_VERSION }}
-          echo "test" > test.txt
           echo "PWD=$(pwd)" >> $GITHUB_ENV
-      - name: Upload to release
-        uses: softprops/action-gh-release@v1
-        with:
-          files: game.js
       - name: Docker run action
         uses: addnab/docker-run-action@v3
         with:
@@ -29,10 +19,15 @@ jobs:
           options: -v ${{ env.PWD }}:/io
           run: |
             echo "Hello docker friend"
-            yum -y install zip openssl-devel
+            wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+            yum -y install zip openssl-devel epel-release-latest-7.noarch.rpm
             #curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
             export LIBTORCH=$PWD/libtorch
             export LD_LIBRARY_PATH=$LIBTORCH/lib:$LD_LIBRARY_PATH
             cd io/server
             pwd
             ls
+      - name: Upload to release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: LICENSE
