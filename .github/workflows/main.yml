@@ -12,8 +12,12 @@ jobs:
       - name: Set env
         run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
       - name: Test
-        run: echo $RELEASE_VERSION; echo ${{ env.RELEASE_VERSION }}; echo "test" > test.txt
+        run: echo $RELEASE_VERSION; pwd; echo ${{ env.RELEASE_VERSION }}; echo "test" > test.txt
       - name: Upload to release
         uses: softprops/action-gh-release@v1
         with:
           files: game.js
+#      - name: Docker run action
+#        uses: addnab/docker-run-action@v3
+#        with:
+#          image:
