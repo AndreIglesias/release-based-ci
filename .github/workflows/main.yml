@@ -11,5 +11,5 @@ jobs:
       - name: Add game.js to release
 
         with:
-	  files: 'game.js'
-	  repo-token: ${{ secrets.GITHUB_TOKEN }}
+          files: 'game.js'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
