@@ -9,5 +9,5 @@ jobs:
     steps:
       - uses: AButler/upload-release-assets@v2.0
         with:
-          files: 'game.js'
+          files: './game.js'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
