@@ -21,7 +21,7 @@ jobs:
             echo "Hello docker friend"
             #yum -y install zip openssl-devel
             curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > rustup.sh
-            sh rustup.sh
+            sh -s -- -y rustup.sh
             export LIBTORCH=$PWD/libtorch
             export LD_LIBRARY_PATH=$LIBTORCH/lib:$LD_LIBRARY_PATH
             cd io/server
