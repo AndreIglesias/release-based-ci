@@ -9,8 +9,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Build
+        run: echo ${{ github.sha }} > Release.txt
+      - name: Test
+        run: cat Release.txt
       - name: Upload binary to release
-        uses: AButler/upload-release-assets@v2.0
+        uses: softprops/action-gh-release@v1
         with:
-          files: 'game.js'
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          files: |
+	    Release.txt
+	    LICENSE
