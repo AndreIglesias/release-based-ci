@@ -1,0 +1,122 @@
+# Website Info
+site_name: BastionLab
+site_url: https://www.mithrilsecurity.io/
+site_author: Mithril Security
+site_description: >-
+  Create a simple privacy framework for data science collaboration, 
+  covering data exploration and machine learning.
+
+# Repository
+repo_name: mithril-security/bastionlab
+repo_url: https://github.com/mithril-security/bastionlab
+
+# Configuration
+theme:
+  name: material
+  custom_dir: docs/material_theme_customization
+  features:
+    - navigation.instant
+    - search.highlight
+    - content.tabs.link
+    - navigation.sections
+    - navigation.expand
+  logo: assets/logo.png
+  favicon: assets/logo.png
+  palette:
+    - scheme: slate
+      toggle:
+        icon: material/weather-sunny
+    - scheme: default
+      toggle:
+        icon: material/weather-night
+  icon:
+    admonition:
+      note: octicons/tag-16
+      abstract: octicons/checklist-16
+      info: octicons/info-16
+      tip: octicons/squirrel-16
+      success: octicons/check-16
+      question: octicons/question-16
+      warning: octicons/alert-16
+      failure: octicons/x-circle-16
+      danger: octicons/zap-16
+      bug: octicons/bug-16
+      example: octicons/beaker-16
+      quote: octicons/quote-16
+
+#Plugins
+plugins:
+  - search
+  - mkdocs-jupyter
+
+# Customization
+extra:
+  homepage: https://mithrilsecurity.io
+  social:
+    - icon: fontawesome/brands/discord
+      link: https://discord.com/invite/TxEHagpWd4
+    - icon: fontawesome/brands/github
+      link: https://github.com/mithril-security/
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/company/mithril-security-company/
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/mithrilsecurity
+
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - "https://code.jquery.com/jquery-3.3.1.min.js"
+
+# Extensions
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.critic
+
+# Documentation tree
+nav:
+  - 🏠 Home: "index.md"
+  - 🚀 Getting started:
+      - Quick tour: "docs/quick-tour/quick-tour.ipynb"
+      - Installation: "docs/getting-started/installation.md"
+  - 📙 Tutorials:
+      - Authentication: "docs/tutorials/authentication.ipynb"
+      - Defining a privacy policy: "docs/tutorials/defining_policy_privacy.ipynb"
+      - Combining datasets: "docs/tutorials/combining_datasets.ipynb"
+      - Data cleaning: "docs/tutorials/data_cleaning.ipynb"
+      - SQL queries: "docs/tutorials/SQL_queries.ipynb"
+      - Data visualization: "docs/tutorials/visualization.ipynb"
+      - Saving DataFrames: "docs/tutorials/saving_dataframes.ipynb"
+  - 🌍 How-to-guides:
+      - Data exploration:
+        - Covid-19 cleaning and exploration: "docs/how-to-guides/covid_cleaning_exploration.ipynb"
+      - Deep learning:
+        - Fine Tuning Distilbert on BastionLab: "docs/how-to-guides/distilbert_example_notebook.ipynb"
+  - 🛠️ API reference: "docs/resources/bastionlab/index.html"
+  - 💡 Concepts:
+      - Remote data science: "docs/concepts-guides/remote_data_science.md"
+  - 🔒 Security:
+      - Threat model: "docs/security/threat_model_data_owner_owns_infrastructure.md"
+      - Authentication specifications: "docs/security/authenticated_sessions.md"
+  - ⚙️ Advanced:
+      - Benchmarks:
+          - Polars: "docs/advanced/benchmarks/polars_benchmarks.md"
+          - Torch: "docs/advanced/benchmarks/torch_benchmarks.md"
+      - Open source:
+          - Contributing: "docs/advanced/contributing/contributing.md"
+          - Code of Conduct: "docs/advanced/contributing/code_of_conduct.md"
