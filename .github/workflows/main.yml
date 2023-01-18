@@ -17,7 +17,7 @@ jobs:
           ls \
           echo ${{ env.RELEASE_VERSION }} \
           echo "test" > test.txt \
-	  echo "PWD=$(pwd)" >> $GITHUB_ENV
+          echo "PWD=$(pwd)" >> $GITHUB_ENV
       - name: Upload to release
         uses: softprops/action-gh-release@v1
         with:
