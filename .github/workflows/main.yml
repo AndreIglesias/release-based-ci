@@ -7,7 +7,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: AButler/upload-release-assets@v2.0
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Upload binary to release
+        uses: AButler/upload-release-assets@v2.0
         with:
-          files: './game.js'
+          files: 'game.js'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
