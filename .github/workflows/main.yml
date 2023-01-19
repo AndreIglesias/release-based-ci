@@ -38,11 +38,10 @@ jobs:
             export PATH=$HOME/.cargo/bin:$PATH
 
             # libtorch installation
-            yum -y install zip openssl-devel \
-              devtoolset-11-binutils \
-              devtoolset-11-gcc \
-              devtoolset-11-gcc-c++ \
-              devtoolset-11-gcc-gfortran
+            yum -y install \
+              zip openssl-devel \
+              devtoolset-11-toolchain
+
             curl -o libtorch.zip ${{ env.LINK_PYTORCH }}
             unzip libtorch.zip
 
@@ -52,7 +51,7 @@ jobs:
             cd server/
 
             # Build server binary
-            LIBTORCH_PATH="$(dirname $(pwd))/libtorch" make build
+	    scl enable devtoolset-11 'LIBTORCH_PATH="$(dirname $(pwd))/libtorch" make build'
             
       ##### Upload binary to release #####
       - name: Upload to release
