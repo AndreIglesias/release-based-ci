@@ -30,8 +30,6 @@ jobs:
             echo "Hello docker friend"
 
             cd io/
-            ls -l
-            exit
 
             # rustup installation
             curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > rustup.sh
@@ -48,7 +46,6 @@ jobs:
             cd server/
 
             LIBTORCH_PATH="$(dirname $(pwd))/libtorch" make build
-            make run
 
       ##### Upload binary to release #####
       - name: Upload to release
