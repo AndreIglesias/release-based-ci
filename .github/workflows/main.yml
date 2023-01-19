@@ -33,7 +33,7 @@ jobs:
             export PATH=$HOME/.cargo/bin:$PATH
 
             # libtorch installation
-	    yum -y install zip openssl-devel
+            yum -y install zip openssl-devel
             curl -o libtorch.zip ${{ env.LINK_PYTORCH }}
             unzip libtorch.zip
             export LIBTORCH=$PWD/libtorch
