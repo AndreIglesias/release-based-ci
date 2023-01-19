@@ -29,8 +29,7 @@ jobs:
           options: -v ${{ env.PWD }}:/io
           run: |
             echo "Hello docker friend"
-            yum -y install devtoolset-11-binutils devtoolset-11-gcc devtoolset-11-gcc-c++ devtoolset-11-gcc-gfortran; gcc -v
-            exit
+
             cd io/
 
             # rustup installation
@@ -39,7 +38,11 @@ jobs:
             export PATH=$HOME/.cargo/bin:$PATH
 
             # libtorch installation
-            yum -y install zip openssl-devel
+            yum -y install zip openssl-devel \
+              devtoolset-11-binutils \
+              devtoolset-11-gcc \
+              devtoolset-11-gcc-c++ \
+              devtoolset-11-gcc-gfortran
             curl -o libtorch.zip ${{ env.LINK_PYTORCH }}
             unzip libtorch.zip
 
