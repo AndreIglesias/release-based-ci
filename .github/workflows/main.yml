@@ -1,7 +1,6 @@
 on:
-  push
-  #release:
-  #  types: [published]
+  release:
+    types: [published]
 
 jobs:
   build:
@@ -24,8 +23,6 @@ jobs:
             curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > rustup.sh
             sh rustup.sh -y
             export PATH=$HOME/.cargo/bin:$PATH
-            which cargo
-            exit
             curl -o libtorch.zip https://download.pytorch.org/libtorch/cpu/libtorch-cxx11-abi-shared-with-deps-1.12.1%2Bcpu.zip
             unzip libtorch.zip
             export LIBTORCH=$PWD/libtorch
