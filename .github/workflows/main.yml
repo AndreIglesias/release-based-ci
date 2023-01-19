@@ -9,14 +9,16 @@ env:
 jobs:
   build:
 
-    runs-on: quay.io/pypa/manylinux2014_x86_64
-    #ubuntu-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+	
       - name: Setup env
         run: echo "PWD=$(pwd)" >> $GITHUB_ENV
+
+      ##### ManyLinux 2014 server compilation #####
       - name: Docker run action
         uses: addnab/docker-run-action@v3
         with:
@@ -24,19 +26,26 @@ jobs:
           options: -v ${{ env.PWD }}:/io
           run: |
             echo "Hello docker friend"
-            yum -y install zip openssl-devel
+
+            # rustup installation
             curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > rustup.sh
             sh rustup.sh -y
             export PATH=$HOME/.cargo/bin:$PATH
+
+            # libtorch installation
+	    yum -y install zip openssl-devel
             curl -o libtorch.zip ${{ env.LINK_PYTORCH }}
             unzip libtorch.zip
             export LIBTORCH=$PWD/libtorch
             export LD_LIBRARY_PATH=$LIBTORCH/lib:$LD_LIBRARY_PATH
+	    
             cd io/server
             pwd
+            ls -l
+	    
             LIBTORCH_PATH="$(dirname $(pwd))/libtorch" make build
-            ls
             make run
+	    
       - name: Upload to release
         uses: softprops/action-gh-release@v1
         with:
