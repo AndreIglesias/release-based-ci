@@ -2,14 +2,14 @@ on:
   release:
     types: [published]
 
+env:
+  link_pytorch : | 
+    https://download.pytorch.org/libtorch/cpu/libtorch-cxx11-abi-shared-with-deps-1.13.1%2Bcpu.zip
+
 jobs:
   build:
 
     runs-on: ubuntu-latest
-
-    variables:
-      link_pytorch : | 
-        https://download.pytorch.org/libtorch/cpu/libtorch-cxx11-abi-shared-with-deps-1.13.1%2Bcpu.zip
 
     steps:
       - name: Checkout
