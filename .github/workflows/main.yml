@@ -51,7 +51,7 @@ jobs:
             cd server/
 
             # Build server binary
-	    scl enable devtoolset-11 'LIBTORCH_PATH="$(dirname $(pwd))/libtorch" make build'
+            scl enable devtoolset-11 'LIBTORCH_PATH="$(dirname $(pwd))/libtorch" make build'
             
       ##### Upload binary to release #####
       - name: Upload to release
