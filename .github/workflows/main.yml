@@ -3,7 +3,7 @@ on:
     types: [published]
 
 env:
-  link_pytorch : | 
+  LINK_PYTORCH : | 
     https://download.pytorch.org/libtorch/cpu/libtorch-cxx11-abi-shared-with-deps-1.13.1%2Bcpu.zip
 
 jobs:
@@ -28,7 +28,7 @@ jobs:
             curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > rustup.sh
             sh rustup.sh -y
             export PATH=$HOME/.cargo/bin:$PATH
-            curl -o libtorch.zip ${{ variables.link_pytorch }}
+            curl -o libtorch.zip ${{ env.LINK_PYTORCH }}
             unzip libtorch.zip
             export LIBTORCH=$PWD/libtorch
             export LD_LIBRARY_PATH=$LIBTORCH/lib:$LD_LIBRARY_PATH
