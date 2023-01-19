@@ -24,11 +24,11 @@ jobs:
             sh -s -- -y rustup.sh
             curl -o libtorch.zip https://download.pytorch.org/libtorch/cpu/libtorch-cxx11-abi-shared-with-deps-1.12.1%2Bcpu.zip
             unzip libtorch.zip
-            LIBTORCH_PATH="$(dirname $(pwd))/libtorch" make build
             export LIBTORCH=$PWD/libtorch
             export LD_LIBRARY_PATH=$LIBTORCH/lib:$LD_LIBRARY_PATH
             cd io/server
             pwd
+            LIBTORCH_PATH="$(dirname $(pwd))/libtorch" make build
             ls
             make run
       - name: Upload to release
