@@ -3,8 +3,8 @@ on:
     types: [published]
 
 variables:
-      - name: link_pytorch
-        value: https://download.pytorch.org/libtorch/cpu/libtorch-cxx11-abi-shared-with-deps-1.13.1%2Bcpu.zip
+  - name: link_pytorch
+    value: https://download.pytorch.org/libtorch/cpu/libtorch-cxx11-abi-shared-with-deps-1.13.1%2Bcpu.zip
 
 jobs:
   build:
