@@ -11,12 +11,15 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    env:
+      PWD: $(pwd)
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Setup environment
-        run: |
-          echo "PWD=$(pwd)" >> $GITHUB_ENV
+      #- name: Setup environment
+      #  run: |
+      #    echo "PWD=$(pwd)" >> $GITHUB_ENV
       - name: Docker run action
         uses: addnab/docker-run-action@v3
         with:
