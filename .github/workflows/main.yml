@@ -41,8 +41,10 @@ jobs:
             yum -y install zip openssl-devel
             curl -o libtorch.zip ${{ env.LINK_PYTORCH }}
             unzip libtorch.zip
-            ls libtorch/include/torch/csrc/jit/mobile
+            ls -l libtorch/include/torch/csrc/jit/mobile
+            echo "DONE :)"
             exit
+
             export LIBTORCH=$PWD/libtorch
             export LD_LIBRARY_PATH=$LIBTORCH/lib:$LD_LIBRARY_PATH
 
