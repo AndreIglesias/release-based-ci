@@ -29,7 +29,7 @@ jobs:
           options: -v ${{ env.PWD }}:/io
           run: |
             echo "Hello docker friend"
-            gcc -v
+            yum -y install gcc-toolset-11; gcc -v
             exit
             cd io/
 
