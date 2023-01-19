@@ -29,7 +29,8 @@ jobs:
           options: -v ${{ env.PWD }}:/io
           run: |
             echo "Hello docker friend"
-
+            gcc -v
+            exit
             cd io/
 
             # rustup installation
