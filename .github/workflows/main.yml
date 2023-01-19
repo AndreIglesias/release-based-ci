@@ -1,6 +1,7 @@
 on:
-  release:
-    types: [published]
+  push
+  #release:
+  #  types: [published]
 
 jobs:
   build:
@@ -20,7 +21,8 @@ jobs:
           run: |
             echo "Hello docker friend"
             yum -y install zip openssl-devel
-            curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > rustup.sh | sh -s -- -y
+            curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > rustup.sh
+	    sh rustup.sh -y
             export PATH=$HOME/.cargo/bin:$PATH
             which cargo
             exit
