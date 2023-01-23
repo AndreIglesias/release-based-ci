@@ -18,8 +18,7 @@ jobs:
       - name: Setup env
         run: |
           echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
-          #echo "PWD=$(pwd)" >> $GITHUB_ENV
-          echo "workspace: " ${{ github.workspace }} "version: " ${{ env.RELEASE_VERSION }}
+          echo "workspace: " ${{ github.workspace }} "version: " ${{ github.event.release.tag_name }}
 
       ##### ManyLinux 2014 server compilation #####
       - name: Docker run action
@@ -63,4 +62,4 @@ jobs:
       - name: Upload to release
         uses: softprops/action-gh-release@v1
         with:
-          files: LICENSE
+          files: server/bastionlab-${{ github.event.release.tag_name }}-linux.zip
