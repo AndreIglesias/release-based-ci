@@ -17,7 +17,9 @@ jobs:
 
       - name: Setup env
         run: |
-          echo "workspace: " ${{ github.workspace }} "version: " ${{ github.event.release.tag_name//v }}
+          TAG=${{ github.event.release.tag_name }}
+	  echo "VERSION=${ TAG//v }" >> $GITHUB_ENV
+	  echo ${ VERSION }
 
       ##### ManyLinux 2014 server compilation #####
       - name: Docker run action
@@ -52,7 +54,7 @@ jobs:
             scl enable devtoolset-11 'LIBTORCH_PATH="$(dirname $(pwd))/libtorch" make all'
 
             # Compress server binary
-            zip basionlab-${{ github.event.release.tag_name//v }}-linux.zip \
+            zip basionlab-${ VERSION }-linux.zip \
               bin/bastionlab \
               bin/config.toml \
               bin/data_frames/
@@ -61,4 +63,4 @@ jobs:
       - name: Upload server binary to release
         uses: softprops/action-gh-release@v1
         with:
-          files: ./server/basionlab-${{ github.event.release.tag_name//v }}-linux.zip
+          files: ./server/basionlab-${ VERSION }-linux.zip
