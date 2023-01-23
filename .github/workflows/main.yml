@@ -51,12 +51,13 @@ jobs:
             cd server/
 
             # Build server binary
-            scl enable devtoolset-11 'LIBTORCH_PATH="$(dirname $(pwd))/libtorch" make build'
-            echo SERVER DIRECTORY:
-            ls -l
-            echo ROOT DIRECTORY:
-            ls -l ../
-    
+            scl enable devtoolset-11 'LIBTORCH_PATH="$(dirname $(pwd))/libtorch" make all'
+
+            # Compress server binary
+            zip basionlab-${{ github.event.release.tag_name }}-linux.zip \
+              bin/bastionlab \
+              bin/config.toml \
+              bin/data_frames/
             
       ##### Upload binary to release #####
       - name: Upload to release
