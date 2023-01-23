@@ -57,9 +57,11 @@ jobs:
               bin/bastionlab \
               bin/config.toml \
               bin/data_frames/
+
+            ls -l
             
       ##### Upload binary to release #####
       - name: Upload to release
         uses: softprops/action-gh-release@v1
         with:
-          files: server/bastionlab-${{ github.event.release.tag_name }}-linux.zip
+          files: ./server/basionlab-${{ github.event.release.tag_name }}-linux.zip
