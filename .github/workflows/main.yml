@@ -15,6 +15,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      ##### Set VERSION to release tag X.Y.Z #####
       - name: Setup env
         run: |
           TAG=${{ github.event.release.tag_name }}
@@ -28,23 +29,23 @@ jobs:
           image: quay.io/pypa/manylinux2014_x86_64
           options: -v ${{ github.workspace }}:/io
           run: |
-            echo "Hello docker friend" ${{ env.VERSION }}
+            echo "Release version:" ${{ env.VERSION }}
 
             cd io/
 
-            # rustup installation
+            # Rustup installation
             curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > rustup.sh
             sh rustup.sh -y
             export PATH=$HOME/.cargo/bin:$PATH
 
-            # libtorch installation
+            # Dependencies installation
             yum -y install \
               zip openssl-devel \
               devtoolset-11-toolchain
 
+            # Libtorch installation
             curl -o libtorch.zip ${{ env.LINK_PYTORCH }}
             unzip libtorch.zip
-
             export LIBTORCH=$PWD/libtorch
             export LD_LIBRARY_PATH=$LIBTORCH/lib:$LD_LIBRARY_PATH
 
