@@ -52,11 +52,11 @@ jobs:
 
             # Build server binary
             scl enable devtoolset-11 'LIBTORCH_PATH="$(dirname $(pwd))/libtorch" make build'
-	    echo SERVER DIRECTORY:
-	    ls -l
-	    echo ROOT DIRECTORY:
-	    ls -l ../
-	    
+            echo SERVER DIRECTORY:
+            ls -l
+            echo ROOT DIRECTORY:
+            ls -l ../
+    
             
       ##### Upload binary to release #####
       - name: Upload to release
