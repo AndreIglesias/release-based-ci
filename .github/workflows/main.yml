@@ -18,8 +18,8 @@ jobs:
       - name: Setup env
         run: |
           TAG=${{ github.event.release.tag_name }}
-	  echo "VERSION=${ TAG//v }" >> $GITHUB_ENV
-	  echo ${ VERSION }
+          echo "VERSION=${ TAG//v }" >> $GITHUB_ENV
+          echo ${ VERSION }
 
       ##### ManyLinux 2014 server compilation #####
       - name: Docker run action
