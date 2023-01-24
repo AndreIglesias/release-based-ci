@@ -35,7 +35,7 @@ jobs:
             export PATH=$HOME/.cargo/bin:$PATH
 
             # Dependencies installation
-            yum -y install \
+            yum -y install python3 \
               zip openssl-devel \
               devtoolset-11-toolchain
 
