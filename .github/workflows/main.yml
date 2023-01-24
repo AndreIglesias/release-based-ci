@@ -2,10 +2,6 @@ on:
   release:
     types: [published]
 
-env:
-  LINK_PYTORCH : | 
-    https://download.pytorch.org/libtorch/cpu/libtorch-shared-with-deps-1.13.1%2Bcpu.zip
-
 jobs:
   build:
 
@@ -44,7 +40,7 @@ jobs:
               devtoolset-11-toolchain
 
             # Libtorch installation
-            curl -o libtorch.zip ${{ env.LINK_PYTORCH }}
+            curl -o libtorch.zip ${{ vars.LINK_PYTORCH }}
             unzip libtorch.zip
             export LIBTORCH=$PWD/libtorch
             export LD_LIBRARY_PATH=$LIBTORCH/lib:$LD_LIBRARY_PATH
