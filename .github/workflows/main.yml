@@ -29,11 +29,6 @@ jobs:
 
             cd io/
 
-            # Rustup installation
-            curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > rustup.sh
-            sh rustup.sh -y
-            export PATH=$HOME/.cargo/bin:$PATH
-
             # Dependencies installation
             yum -y install python3 \
               zip openssl-devel \
@@ -48,6 +43,11 @@ jobs:
             unzip libtorch.zip
             export LIBTORCH=$PWD/libtorch
             export LD_LIBRARY_PATH=$LIBTORCH/lib:$LD_LIBRARY_PATH
+
+            # Rustup installation
+            curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > rustup.sh
+            sh rustup.sh -y
+            export PATH=$HOME/.cargo/bin:$PATH
 
             cd server/
 
