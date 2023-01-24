@@ -40,7 +40,7 @@ jobs:
               devtoolset-11-toolchain
 
             # Libtorch installation
-	    echo 'import requests \
+              echo 'import requests \
               open("libtorch.zip", "wb").write(
                 requests.get(__torch_url__).content
               )' | python3 -i client/src/bastionlab/version.py
