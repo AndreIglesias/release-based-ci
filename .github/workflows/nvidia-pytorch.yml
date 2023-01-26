@@ -15,7 +15,7 @@ jobs:
       - name: Docker run action
         uses: addnab/docker-run-action@v3
         with:
-          image: quay.io/pypa/manylinux2014_x86_64
+          image: nvcr.io/nvidia/pytorch:22.12-py3
           run: |
             export DEBIAN_FRONTEND="noninteractive"
             apt-get update
