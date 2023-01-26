@@ -1,0 +1,62 @@
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Docker run action
+        uses: addnab/docker-run-action@v3
+        with:
+          image: quay.io/pypa/manylinux2014_x86_64
+          run: |
+            export DEBIAN_FRONTEND="noninteractive"
+            apt-get update && \
+            apt-get install -y \
+              software-properties-common \
+              build-essential patchelf \
+              libssl-dev pkg-config \
+              git curl python3 python3-pip && \
+            add-apt-repository -y ppa:ubuntu-toolchain-r/test && \
+            apt install -y gcc-11 g++-11 cpp-11 && \
+            update-alternatives \
+              --install /usr/bin/gcc gcc /usr/bin/gcc-11 100 \
+              --slave /usr/bin/g++ g++ /usr/bin/g++-11 \
+              --slave /usr/bin/gcov gcov /usr/bin/gcov-11 && \
+            gcc -v && \
+            curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > rustup.sh && \
+            sh rustup.sh -y  && \
+            pip3 install requests  && \
+            git clone -b release-workflow "https://github.com/mithril-security/bastionlab.git"
+            
+            cd bastionlab/
+
+            # Libtorch installation
+            echo 'import requests; \
+            open("libtorch.zip", "wb").write( \
+                requests.get(__torch_url__).content \
+                )' | python3 -i client/src/bastionlab/version.py
+            #curl -o libtorch.zip ${{ vars.LINK_PYTORCH }}
+            unzip libtorch.zip
+            export CUDA="/usr/local/cuda"
+            export LIBTORCH=$PWD/libtorch
+            export LD_LIBRARY_PATH="${CUDA}/lib64:${LIBTORCH}/lib:${LD_LIBRARY_PATH}"
+
+            # Rustup installation
+            curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > rustup.sh
+            sh rustup.sh -y
+            export PATH=$HOME/.cargo/bin:$PATH
+
+            cd server/
+
+            # Build server binary
+            LIBTORCH_PATH="$(dirname $(pwd))/libtorch" make all
+            ls -l bin
+
