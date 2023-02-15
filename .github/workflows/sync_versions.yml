@@ -40,8 +40,11 @@ jobs:
             echo "${key^^}=\"${value}\""
             echo "${key^^}=\"${value}\"" >> /tmp/env.tmp
             if [ "${key^^}" == "TORCH_VERSION" ]; then
-              echo "TORCH_URL=\"${TORCH_BASE_URL}libtorch-shared-with-deps-\${${key^^}}%2Bcpu.zip\"" >> /tmp/env.tmp
-              echo "TORCH_CXX11_URL=\"${TORCH_BASE_URL}libtorch-cxx11-abi-shared-with-deps-\${${key^^}}%2Bcpu.zip\"" >> /tmp/env.tmp
+              # Generate torch links
+              TORCH_URL="${TORCH_BASE_URL}libtorch-shared-with-deps-\${${key^^}}%2Bcpu.zip"
+              TORCH_CXX11_URL="${TORCH_BASE_URL}libtorch-cxx11-abi-shared-with-deps-\${${key^^}}%2Bcpu.zip"
+              # Add them to /tmp/env.tmp
+              printf '%s\n%s\n' "TORCH_URL=\"${TORCH_URL}\"" "TORCH_CXX11_URL=\"${TORCH_CXX11_URL}\"" >> /tmp/env.tmp
             fi
           done
 
@@ -66,8 +69,11 @@ jobs:
             value=$(echo "${VERSIONS_OBJECT}" | jq -r --arg k "$key" '.[$k]')
             echo "__${key,,}__ = \"${value}\"" >> /tmp/version.py
             if [ "${key^^}" == "TORCH_VERSION" ]; then
-              echo "__torch_url__ = \"${TORCH_BASE_URL}libtorch-shared-with-deps-\"+__${key,,}__+\"%2Bcpu.zip\"" >> /tmp/version.py
-              echo "__torch_cxx11_url__ = \"${TORCH_BASE_URL}libtorch-cxx11-abi-shared-with-deps-\"+__${key,,}__+\"%2Bcpu.zip\"" >> /tmp/version.py
+              # Generate torch links
+              TORCH_URL="${TORCH_BASE_URL}libtorch-shared-with-deps-\"+__${key,,}__+\"%2Bcpu.zip"
+              TORCH_CXX11_URL="${TORCH_BASE_URL}libtorch-cxx11-abi-shared-with-deps-\"+__${key,,}__+\"%2Bcpu.zip"
+              # Add them to /tmp/version.py
+              printf '%s\n%s\n' "__torch_url__ = \"${TORCH_URL}\"" "__torch_cxx11_url__ = \"${TORCH_CXX11_URL}\"" >> /tmp/version.py
             fi
           done
 
