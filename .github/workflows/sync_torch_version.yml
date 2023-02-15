@@ -11,8 +11,8 @@ jobs:
     strategy:
       matrix:
         array:
-          - "__version__=${{ var.BASTIONLAB_VERSION }}"
-          - "__torch_version__=${{ var.LIBTORCH_VERSION }}"
+          - "__version__=${{ vars.BASTIONLAB_VERSION }}"
+          - "__torch_version__=${{ vars.LIBTORCH_VERSION }}"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
