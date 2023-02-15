@@ -32,7 +32,6 @@ jobs:
           echo "Parsed JSON object: $VERSIONS_OBJECT"
 
       - name: Env file creation
-        needs: Parse JSON variable
         run: |
           echo -e " ${{ env.WARNING_HEADER }}" > /tmp/env.tmp
 
