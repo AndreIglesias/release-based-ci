@@ -35,11 +35,11 @@ jobs:
           echo "VERSIONS_OBJECT=$(cat /tmp/versions.json | jq -c '.')" >> $GITHUB_ENV
           echo "Parsed JSON object: $VERSIONS_OBJECT"
 
-      - name: JSON parsing falied
+      - name: If JSON parsing falied
         if: ${{ failure() }}
         run: |
           echo
-            echo "JSON Error with github VERSIONS variable!"
+            echo "JSON Error: github VERSIONS variable is bad formatted! ❌😔"
             echo "${{ vars.VERSIONS }}"
 
       - name: Env file creation
