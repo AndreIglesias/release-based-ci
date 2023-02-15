@@ -8,5 +8,5 @@ jobs:
         run: |
           for var_name in ${{ vars.* }}; do
             echo "Secret name: $var_name"
-            echo "Secret value: ${{ fromJSON(vars)[var_name] }}"
+            echo "Secret value: ${{ fromJSON(vars)[!var_name] }}"
           done
