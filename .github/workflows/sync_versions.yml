@@ -31,6 +31,7 @@ jobs:
           EXIT_STATUS=$?
           if ! (exit $EXIT_STATUS); then
             echo "JSON Error with github versions variable!"
+            echo "$VERSIONS_JSON"
             exit $EXIT_STATUS
           fi
           echo "VERSIONS_OBJECT=$(cat /tmp/versions.json | jq -c '.')" >> $GITHUB_ENV
