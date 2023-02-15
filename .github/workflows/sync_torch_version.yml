@@ -6,11 +6,11 @@ on:
   workflow_dispatch:
   push:
 
+env:
+  VERSIONS_JSON: "${{ fromJSON(vars.VERSIONS) }}"
+
 jobs:
   sync-variables:
-    env:
-      VERSIONS_JSON: ${{ fromJSON(vars.VERSIONS) }}
-
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
