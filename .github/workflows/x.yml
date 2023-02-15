@@ -11,5 +11,5 @@ jobs:
         run: |
           for var in ${{ vars }}; do
             echo "Variable: $var"
-            echo "Value: ${{ vars[var] }}"
+            echo "Value: ${{ vars[$var] }}"
           done
