@@ -50,7 +50,7 @@ jobs:
             value=$(echo "${VERSIONS_OBJECT}" | jq -r --arg k "$key" '.[$k]')
             echo "    \"__${key,,}__\"," >> /tmp/version.py
           done
-	  echo "]" >> /tmp/version.py
+          echo "]" >> /tmp/version.py
 
           # Init variables
           for key in $(echo "${VERSIONS_OBJECT}" | jq -r 'keys[]'); do
