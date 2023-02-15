@@ -1,0 +1,19 @@
+name: Verify Config Variable Change
+on:
+  push:
+    branches:
+      - main
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify config variable
+        if: ${{ github.event.changes.vars }}
+        run: |
+          current_value=${{ vars.LIBTORCH_VERSION }}
+          previous_value=${{ github.event.before.LIBTORCH_VERSION }}
+          if [[ "$current_value" != "$previous_value" ]]; then
+            echo "Variable has changed"
+          else
+            echo "Variable has not changed"
+          fi
