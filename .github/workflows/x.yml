@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: Verify config variable
         run: |
-          for variable in ${{ vars }}; do
-            echo "Variable: $variable"
-            echo "Value: ${{ vars[variable] }}"
+          for var in ${{ vars }}; do
+            echo "Variable: $var"
+            echo "Value: ${{ vars[var] }}"
           done
