@@ -1,4 +1,4 @@
-name: Github sync version manager
+name: Github sync version variables manager
 
 on:
   workflow_dispatch:
@@ -40,8 +40,8 @@ jobs:
             echo "${key^^}=\"${value}\""
             echo "${key^^}=\"${value}\"" >> /tmp/env.tmp
             if [ "${key^^}" == "TORCH_VERSION" ]; then
-              echo "TORCH_URL=${TORCH_BASE_URL}libtorch-shared-with-deps-\${${key^^}}%2Bcpu.zip" >> /tmp/env.tmp
-              echo "TORCH_CXX11_URL=${TORCH_BASE_URL}libtorch-cxx11-abi-shared-with-deps-\${${key^^}}%2Bcpu.zip" >> /tmp/env.tmp
+              echo "TORCH_URL=\"${TORCH_BASE_URL}libtorch-shared-with-deps-\${${key^^}}%2Bcpu.zip\"" >> /tmp/env.tmp
+              echo "TORCH_CXX11_URL=\"${TORCH_BASE_URL}libtorch-cxx11-abi-shared-with-deps-\${${key^^}}%2Bcpu.zip\"" >> /tmp/env.tmp
             fi
           done
 
