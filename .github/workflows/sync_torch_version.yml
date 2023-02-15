@@ -7,6 +7,14 @@ jobs:
   sync-version:
     runs-on: ubuntu-latest
     steps:
+      - name: variable has change
+        run: |
+          if [[ "${{ github.event.repository.variables.LIBTORCH_VERSION }}" != "${{ github.event.changes.LIBTORCH_VERSION }}" ]]; then
+            echo "VAR HAS CHANGED"
+          else
+            echo "var has not changed"
+          fi
+
       - name: Checkout
         uses: actions/checkout@v3
 
