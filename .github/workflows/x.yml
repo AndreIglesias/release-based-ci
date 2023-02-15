@@ -8,12 +8,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Verify config variable
-        if: ${{ github.event.changes.vars }}
         run: |
-          current_value=${{ vars.LIBTORCH_VERSION }}
-          previous_value=${{ github.event.before.LIBTORCH_VERSION }}
-          if [[ "$current_value" != "$previous_value" ]]; then
-            echo "Variable has changed"
-          else
-            echo "Variable has not changed"
-          fi
+          for change in ${{ toJson(github.event.changes) }}; do
+            if [[ $change.key == "vars.LIBTORCH_VERSION" ]]; then
+              echo "MY_VARIABLE has been modified"
+              current_value=${{ vars.LIBTORCH_VERSION }}
+              previous_value=$change.from
+              if [[ "$current_value" != "$previous_value" ]]; then
+                echo "Variable has changed"
+              else
+                echo "Variable has not changed"
+              fi
+              break
+            fi
+          done
