@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: Verify config variable
         run: |
-          for change in ${{ toJson(github.event.changes) }}; do
+          for change in ${{ toJson(github.event.changes()) }}; do
             if [[ $change.key == "vars.LIBTORCH_VERSION" ]]; then
               echo "MY_VARIABLE has been modified"
               current_value=${{ vars.LIBTORCH_VERSION }}
