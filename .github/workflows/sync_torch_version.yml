@@ -8,9 +8,6 @@ on:
 
 jobs:
   sync-variables:
-    strategy:
-      matrix:
-        env: [
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
