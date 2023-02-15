@@ -1,10 +1,13 @@
 name: Github sync version manager
 
 on:
-  schedule:
-    - cron: "* */6 * * *"
   workflow_dispatch:
   push:
+  schedule:
+    - cron: "* */6 * * *"
+
+env:
+  VERSIONS_JSON: ${{ vars.VERSIONS }}
 
 jobs:
   sync-variables:
@@ -15,7 +18,7 @@ jobs:
 
       - name: Env file creation
         run: |
-          echo "${{ fromJSON(vars.VERSIONS) }}"
+          echo "${{ fromJSON(vars.VERSIONS).torch_version }}"
           #echo "Number of version variables: ${#VERSIONS_JSON}"
           #  for i in "${SECRET_ARRAY[@]}"; do
           #echo "$i"
