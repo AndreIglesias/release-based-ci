@@ -35,7 +35,7 @@ jobs:
           echo "VERSIONS_OBJECT=$(cat /tmp/versions.json | jq -c '.')" >> $GITHUB_ENV
           echo "Parsed JSON object: $VERSIONS_OBJECT"
 
-      - name: Verify parsing falied
+      - name: Verify JSON parsing
         if: ${{ failure() }}
         run: |
           echo
