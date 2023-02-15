@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: variable has change
         run: |
-          if [[ "${{ github.event.repository.variables.LIBTORCH_VERSION }}" != "${{ github.event.changes.LIBTORCH_VERSION }}" ]]; then
+          if [[ "${{ github.event.repository.variables.libtorch_version }}" != "${{ github.event.changes.libtorch_version }}" ]]; then
             echo "VAR HAS CHANGED"
           else
             echo "var has not changed"
