@@ -26,7 +26,7 @@ jobs:
           echo "# Do not modify it directly, use the configuration variables instead." >> /tmp/env.tmp
 
           #for val in ${{ join(matrix.array, ' ') }}; do
-          echo "matrix.array" >> /tmp/env.tmp
+          echo "${{ matrix.array }}" >> /tmp/env.tmp
           #done
           cat /tmp/env.tmp
 
