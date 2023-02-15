@@ -30,12 +30,17 @@ jobs:
           cat /tmp/versions.json | jq 2>&1
           EXIT_STATUS=$?
           if ! (exit $EXIT_STATUS); then
-            echo "JSON Error with github versions variable!"
-            echo "${{ vars.VERSIONS }}"
             exit $EXIT_STATUS
           fi
           echo "VERSIONS_OBJECT=$(cat /tmp/versions.json | jq -c '.')" >> $GITHUB_ENV
           echo "Parsed JSON object: $VERSIONS_OBJECT"
+
+      - name: JSON parsing falied
+        if: ${{ failure() }}
+        run: |
+          echo
+            echo "JSON Error with github VERSIONS variable!"
+            echo "${{ vars.VERSIONS }}"
 
       - name: Env file creation
         run: |
