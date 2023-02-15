@@ -27,7 +27,11 @@ jobs:
           cat <<EOF > /tmp/versions.json
             ${{ env.VERSIONS_JSON }}
           EOF
-          cat /tmp/versions.json
+          cat /tmp/versions.json | jq 2>&1
+          EXIT_STATUS=$?
+          if ! (exit $EXIT_STATUS); then
+            exit $EXIT_STATUS
+          fi
           echo "VERSIONS_OBJECT=$(cat /tmp/versions.json | jq -c '.')" >> $GITHUB_ENV
           echo "Parsed JSON object: $VERSIONS_OBJECT"
 
