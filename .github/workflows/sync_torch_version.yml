@@ -32,7 +32,8 @@ jobs:
 
       - name: Env file creation
         run: |
-          echo -e "${{ env.WARNING_HEADER }}" > /tmp/env.tmp
+          echo -e " ${{ env.WARNING_HEADER }}"
+          echo -e " ${{ env.WARNING_HEADER }}" > /tmp/env.tmp
 
           export VERSIONS_OBJECT=$(cat /tmp/versions.json | jq -c '.')
           for key in $(echo "${VERSIONS_OBJECT}" | jq -r 'keys[]'); do
