@@ -1,15 +1,12 @@
-name: Verify Config Variable Change
-on:
-  push:
-    branches:
-      - main
+name: Iterate over all secrets
+on: [push]
 jobs:
-  verify:
+  example:
     runs-on: ubuntu-latest
     steps:
-      - name: Verify config variable
+      - name: Print all vars
         run: |
-          for var in ${{ vars }}; do
-            echo "Variable: $var"
-            echo "Value: ${{ vars[$var] }}"
+          for var_name in ${{ vars.* }}; do
+            echo "Secret name: $var_name"
+            echo "Secret value: ${{ vars[$var_name] }}"
           done
