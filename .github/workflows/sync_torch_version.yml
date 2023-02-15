@@ -31,7 +31,7 @@ jobs:
           for key in $(echo "${VERSIONS_OBJECT}" | jq -r 'keys[]'); do
             value=$(echo "${VERSIONS_OBJECT}" | jq -r --arg k "$key" '.[$k]')
             echo "Key: $key, Value: $value"
-            echo "${key}=${value}" >> /tmp/env.tmp
+            echo "$(echo $key | tr '[:lower:]' '[:upper:]')=${value}" >> /tmp/env.tmp
           done
           cat /tmp/env.tmp
 
