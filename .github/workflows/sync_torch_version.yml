@@ -50,7 +50,7 @@ jobs:
               mv /tmp/env.tmp .env.vars
             fi
           else
-	    mv /tmp/env.tmp .env.vars
+            mv /tmp/env.tmp .env.vars
           fi
 
       - name: Update env file
