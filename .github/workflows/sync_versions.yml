@@ -103,6 +103,7 @@ jobs:
             if [ "$tmpfile" != "$varfile" ]; then
               mv /tmp/version.py client/src/bastionlab/version.py
             else
+              echo "Already up to date!"
               return 0
             fi
           else
