@@ -6,6 +6,8 @@ jobs:
     steps:
       - name: Print all vars
         run: |
-          for var_name in ${{ vars }}; do
-            echo "Secret name: $var_name = $${{ vars[${var_name}] }}"
+          for var_name in ${{ vars.* }}; do
+            if [[ ! -z "${!var_name}" ]];then
+              echo "Secret name: $var_name = ${!var_name}"
+            fi
           done
