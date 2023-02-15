@@ -57,6 +57,7 @@ jobs:
             if [ "${key^^}" == "TORCH_VERSION" ]; then
               echo "    \"__torch_url__\"," >> /tmp/version.py
               echo "    \"__torch_cxx11_url__\"," >> /tmp/version.py
+            fi
           done
           echo "]" >> /tmp/version.py
 
