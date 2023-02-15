@@ -1,7 +1,7 @@
 on:
   push:
-    paths:
-      - client/src/bastionlab/version.py
+#    paths:
+#      - client/src/bastionlab/version.py
 
 jobs:
   sync-version:
