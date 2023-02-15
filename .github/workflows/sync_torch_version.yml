@@ -15,7 +15,7 @@ jobs:
 
       - name: Env file creation
         run: |
-          echo ${{ fromJSON(vars.VERSIONS) }}"
+          echo "${{ fromJSON(vars.VERSIONS) }}"
           #echo "Number of version variables: ${#VERSIONS_JSON}"
           #  for i in "${SECRET_ARRAY[@]}"; do
           #echo "$i"
