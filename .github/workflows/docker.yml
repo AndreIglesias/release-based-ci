@@ -29,6 +29,10 @@ jobs:
       #    push: true
       #    tags: ${{ secrets.DOCKER_HUB_USERNAME }}/bastionlab:latest, ${{ secrets.DOCKER_HUB_USERNAME }}/bastionlab:${{ github.event.release.tag_name }}
 
+      - name: Free space
+      - run: |
+          curl https://raw.githubusercontent.com/apache/flink/master/tools/azure-pipelines/free_disk_space.sh | bash
+
       # Build
       - name: Build and push
         uses: docker/build-push-action@v2
