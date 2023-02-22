@@ -33,7 +33,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
-          context: ./
-          file: ./server/Dockerfile.gpu.sev
+          context: server
+          file: Dockerfile.gpu.sev
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/bastionlab-gpu:latest, ${{ secrets.DOCKER_HUB_USERNAME }}/bastionlab-gpu:${{ github.event.release.tag_name }}
